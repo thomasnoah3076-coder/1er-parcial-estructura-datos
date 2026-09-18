@@ -12,6 +12,15 @@ Este proyecto implementa un pequeño sistema de gestión de funciones de cine en
 
 ---
 
+## 1. Registrar la siguiente información
+
+| Información del almacenamiento | Estructura | Justificación |
+|---|---|---|
+| **Funciones** | Lista simplemente enlazada (`ListaFunciones` / `NodoFuncion`) | La cantidad de funciones no se conoce de antemano y va creciendo dinámicamente a medida que el cine las registra (`insertar`). Una lista enlazada permite agregar nodos sin definir un tamaño fijo, y las operaciones que requiere el programa (recorrer todas las funciones, buscar por código, obtener por posición) se resuelven con un recorrido secuencial desde el `head`. |
+| **Puestos** | Arreglo (`char[] puestos`, tamaño fijo `TOTAL_PUESTOS = 20`) | Cada función tiene una cantidad **fija y conocida de antemano** (20 puestos) que no cambia durante la ejecución. Un arreglo permite acceso directo por índice en O(1) para consultar (`estaDisponible`) o modificar (`venderPuesto`) el estado de un puesto específico, algo más costoso con una lista enlazada, ya que no se necesita insertar ni eliminar puestos, solo cambiar su estado entre `D` y `O`. |
+
+---
+
 ## Preguntas de análisis
 
 ### 1. Si se necesita buscar una función por su código, ¿cómo recorrería la estructura seleccionada?
